@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Haneen Mohamed | Strategic Data Analytics Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #38bdf8;
+            --bg: #020617;
+            --surface: #0f172a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: #f8fafc;
+            overflow: hidden; 
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gradient-text { background: linear-gradient(135deg, #fff 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .page-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            opacity: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 120px;
+            z-index: 10;
+        }
+        
+        .page-container.active {
+            display: block;
+            animation: pageFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-frame {
+            position: relative;
+            border-radius: 3rem;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 0.85/1;
+            background: var(--surface);
+        }
+
+        .nav-btn.active { color: var(--primary) !important; opacity: 1 !important; border-bottom: 2px solid var(--primary); }
+        
+        .skill-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .skill-card:hover {
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 1023px) {
+            .desktop-nav { display: none; }
+            .page-container { padding-top: 20px; }
+        }
+        
+        @media (min-width: 1024px) {
+            .mobile-nav { display: none; }
+            .page-container { padding-top: 100px; }
+        }
+
+        .feature-badge {
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .project-section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .project-section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav fixed top-0 w-full z-[100] px-12 py-6 flex justify-between items-center glass border-b border-white/5">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
+            <div class="w-12 h-12 bg-sky-500 rounded-2xl flex items-center justify-center font-black text-black text-2xl shadow-xl shadow-sky-500/20">H</div>
+            <div>
+                <span class="block font-black tracking-widest text-sm uppercase leading-none">Haneen Mohamed</span>
+                <span class="text-[9px] text-sky-500 uppercase font-bold tracking-[0.2em]">Data Strategist</span>
+            </div>
+        </div>
+        <div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+            <button onclick="showPage('home')" id="d-home" class="nav-btn pb-1 transition-all hover:text-white active">Intro</button>
+            <button onclick="showPage('experience')" id="d-experience" class="nav-btn pb-1 transition-all hover:text-white">Expertise</button>
+            <button onclick="showPage('projects')" id="d-projects" class="nav-btn pb-1 transition-all hover:text-white">Portfolio</button>
+            <button onclick="showPage('contact')" id="d-contact" class="nav-btn pb-1 transition-all hover:text-white">Contact</button>
+        </div>
+        <div class="flex items-center gap-6">
+             <a href="https://wa.me/201027324111" target="_blank" class="px-5 py-2.5 rounded-xl border border-sky-500/30 text-sky-400 text-[10px] font-black uppercase tracking-widest hover:bg-sky-500 hover:text-black transition-all">
+                Let's Chat
+             </a>
+        </div>
+    </nav>
+
+    <main class="relative w-full h-full">
+
+        <!-- Home Page -->
+        <section id="home" class="page-container active">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-center min-h-screen gap-12 lg:gap-24 py-24 lg:py-0">
+                
+                <div class="w-full lg:w-2/5 flex justify-center lg:justify-end" data-aos="fade-right">
+                    <div class="profile-frame shadow-2xl shadow-sky-500/10">
+                        <img src="https://j.top4top.io/p_36926mrte1.jpeg" class="w-full h-full object-cover" alt="Haneen Mohamed">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-3/5 text-center lg:text-left" data-aos="fade-up">
+                    <div class="flex gap-3 mb-8 justify-center lg:justify-start">
+                        <span class="feature-badge">Advanced Data Architecture</span>
+                        <span class="feature-badge">Strategy & BI</span>
+                    </div>
+                    <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
+                        Data That <br> Drives <span class="gradient-text">Revenue.</span>
+                    </h1>
+                    
+                    <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-6 leading-relaxed font-light text-justify lg:text-left">
+                        As a Strategic Data Analytics Specialist, I bridge the gap between technical complexity and business growth. I specialize in designing scalable data ecosystems that don't just store information, but actively generate high-yield investment opportunities. My workflow integrates high-level <span class="text-sky-400 font-mono">Statistical Modeling</span> with robust automation to transform organizational data into a dominant competitive advantage.
+                    </p>
+
+                    <div class="mb-10 h-8 flex items-center justify-center lg:justify-start">
+                        <span class="text-sky-400 font-mono text-lg uppercase tracking-widest" id="typewriter"></span>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-6">
+                        <button onclick="showPage('projects')" class="px-10 py-5 bg-sky-500 text-black rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-sky-500/20">Explore Projects</button>
+                        <button onclick="showPage('experience')" class="px-10 py-5 border border-white/10 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white/5 transition-all">My Experience</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Page (Heavily Expanded) -->
+        <section id="experience" class="page-container">
+            <div class="max-w-6xl mx-auto px-6 py-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-black uppercase tracking-tight">Technical <span class="text-sky-500">Infrastructure</span></h2>
+                    <p class="text-slate-500 mt-4 uppercase tracking-[0.3em] text-[10px]">Hard skills & professional trajectory</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4 space-y-6" data-aos="fade-right">
+                        <div class="skill-card p-8 rounded-[2.5rem]">
+                            <i class="fas fa-terminal text-sky-500 text-2xl mb-4"></i>
+                            <h4 class="text-white font-black text-sm uppercase mb-3">Programming & Logic</h4>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li><strong class="text-sky-400/80">Python:</strong> Advanced automation, Scikit-Learn, TensorFlow, NLTK, FastAPI.</li>
+                                <li><strong class="text-sky-400/80">SQL Mastery:</strong> Recursive CTEs, Window Functions, Query Performance Tuning (PostgreSQL, BigQuery).</li>
+                                <li><strong class="text-sky-400/80">R:</strong> Statistical significance testing & survival analysis.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-8 rounded-[2.5rem]">
+                            <i class="fas fa-database text-sky-500 text-2xl mb-4"></i>
+                            <h4 class="text-white font-black text-sm uppercase mb-3">Data Engineering</h4>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li><strong class="text-sky-400/80">Pipeline Design:</strong> Designing idempotent ETL/ELT flows using dbt and Airflow.</li>
+                                <li><strong class="text-sky-400/80">Warehousing:</strong> Schema design (Star/Snowflake), Data Lakehouse management.</li>
+                                <li><strong class="text-sky-400/80">Quality Control:</strong> Automated data validation & anomaly monitoring.</li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-card p-8 rounded-[2.5rem]">
+                            <i class="fas fa-chart-line text-sky-500 text-2xl mb-4"></i>
+                            <h4 class="text-white font-black text-sm uppercase mb-3">Visual Storytelling</h4>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li><strong class="text-sky-400/80">Power BI:</strong> Sophisticated DAX modeling, Row-level security (RLS).</li>
+                                <li><strong class="text-sky-400/80">Tableau:</strong> Advanced LOD expressions & interactive mapping.</li>
+                                <li><strong class="text-sky-400/80">Strategic BI:</strong> Transforming raw metrics into OKR-driven narratives.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8" data-aos="fade-left">
+                        <div class="space-y-10 relative border-l border-white/5 pl-8 ml-4">
+                            <div class="relative">
+                                <div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-sky-500 border-4 border-bg shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
+                                <div class="glass p-10 rounded-[3rem] border border-white/5 hover:border-sky-500/20 transition-all">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 class="text-3xl font-black uppercase text-white">Lead Data Analytics Architect</h3>
+                                            <p class="text-sky-400 font-bold uppercase text-[10px] tracking-widest mt-1">Global Strategic Unit | Jan 2023 - Present</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-400 text-sm leading-relaxed text-justify mb-6">
+                                        Driving the enterprise-wide transition to a data-first culture. I am responsible for the end-to-end data value chain, from architecting ingestion layers to delivering executive predictive insights.
+                                    </p>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="bg-white/5 p-4 rounded-2xl">
+                                            <h5 class="text-white font-black text-[10px] uppercase mb-2">Key Responsibility</h5>
+                                            <p class="text-[11px] text-slate-400">Led the migration of legacy reporting systems to a unified cloud warehouse, increasing query speeds by 300%.</p>
+                                        </div>
+                                        <div class="bg-white/5 p-4 rounded-2xl">
+                                            <h5 class="text-white font-black text-[10px] uppercase mb-2">Strategy & ROI</h5>
+                                            <p class="text-[11px] text-slate-400">Developed a churn prediction model that saved an estimated $2.4M in potential lost revenue over 18 months.</p>
+                                        </div>
+                                    </div>
+                                    <ul class="text-[11px] text-slate-400 mt-6 space-y-3">
+                                        <li class="flex items-center gap-3"><i class="fas fa-check text-sky-500"></i> Managing a portfolio of 50+ real-time operational dashboards across 4 continents.</li>
+                                        <li class="flex items-center gap-3"><i class="fas fa-check text-sky-500"></i> Standardized data governance protocols, ensuring 100% GDPR compliance across data lakes.</li>
+                                        <li class="flex items-center gap-3"><i class="fas fa-check text-sky-500"></i> Collaborating directly with CTO/CFO to align technical roadmaps with fiscal growth targets.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-slate-700 border-4 border-bg"></div>
+                                <div class="glass p-10 rounded-[3rem] border border-white/5 opacity-80">
+                                    <h3 class="text-xl font-black uppercase text-white">Senior Business Intelligence Analyst</h3>
+                                    <p class="text-sky-400/60 font-bold uppercase text-[10px] tracking-widest mt-1 mb-4">Investment Group | 2021 - 2023</p>
+                                    <p class="text-slate-400 text-xs leading-relaxed">
+                                        Spearheaded market penetration analysis for new product launches. Built automated financial consolidation tools that reduced end-of-month closing cycles by 4 days.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Page (Detailed Projects) -->
+        <section id="projects" class="page-container">
+            <div class="max-w-6xl mx-auto px-6 py-24">
+                <div class="text-center mb-24">
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter">Selected <span class="text-sky-500 italic">Projects</span></h2>
+                    <p class="text-slate-500 uppercase tracking-[0.5em] text-xs mt-6">A deep dive into technical problem solving</p>
+                </div>
+
+                <div class="space-y-48">
+                    <!-- Project 1: Market Elasticity -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-start" data-aos="fade-up">
+                        <div class="sticky top-24">
+                            <div class="relative rounded-[3rem] overflow-hidden group shadow-2xl mb-8">
+                                <img src="https://k.top4top.io/p_3692jfcpa1.jpeg" class="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110" alt="Market Analysis">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-10">
+                                    <span class="feature-badge">Advanced Econometrics</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="feature-badge text-[9px]">Python ML</span>
+                                <span class="feature-badge text-[9px]">Hypothesis Testing</span>
+                                <span class="feature-badge text-[9px]">Seaborn</span>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-5xl font-black uppercase text-sky-500 mb-4 leading-tight">Dynamic Pricing & Market Elasticity Engine</h3>
+                                <p class="text-slate-400 text-base leading-relaxed text-justify">
+                                    This project focused on solving a major retail challenge: identifying the precise "Profit-Maximum" price point across 5,000+ SKUs. I utilized a multi-stage econometric approach to calculate price elasticity for each category.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Technical Methodology</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Implemented a <span class="text-sky-400">Log-Log Regression model</span> using Python's <code>statsmodels</code> library. This allowed for the coefficient interpretation as percentage elasticity. I integrated <code>Prophet</code> for time-series decomposition to remove the noise of seasonal spikes and promotional holidays, ensuring that price-sensitivity results were unbiased.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Measurable Impact</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Engineered a dynamic pricing framework that automated price updates based on competitor movement and inventory levels. 
+                                    <br><br>
+                                    <span class="text-white font-bold">• Revenue Growth:</span> 14.5% lift in under-performing categories.<br>
+                                    <span class="text-white font-bold">• Inventory Turnover:</span> 20% improvement in stock clearance efficiency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Executive Intelligence -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-start" data-aos="fade-up">
+                        <div class="order-2 lg:order-1 space-y-8">
+                            <div>
+                                <h3 class="text-5xl font-black uppercase text-sky-500 mb-4 leading-tight">Unified Enterprise Growth Hub</h3>
+                                <p class="text-slate-400 text-base leading-relaxed text-justify">
+                                    Faced with fragmented data silos across Marketing, Sales, and Finance, I architected a centralized BI ecosystem. This project moved the organization from manual monthly Excel reporting to a real-time "Pulse" dashboard for global operations.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Infrastructure Design</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Utilized <span class="text-sky-400">SQL Server Integration Services (SSIS)</span> and Azure Data Factory to build automated ETL pipelines. For the visualization layer, I developed a sophisticated Power BI theme with custom DAX calculations for Net Dollar Retention (NDR) and Churn probability based on customer health scores.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Key Performance Gains</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Eliminated "Data Discrepancy" errors between departments and reduced executive meeting preparation time by 80%.
+                                    <br><br>
+                                    <span class="text-white font-bold">• ROI Transparency:</span> Real-time tracking of marketing spend against actual closed-won revenue.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2 sticky top-24">
+                            <div class="relative rounded-[3rem] overflow-hidden group shadow-2xl mb-8">
+                                <img src="https://c.top4top.io/p_3692d35ov1.png" class="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110" alt="Growth Hub">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-10">
+                                    <span class="feature-badge">Data Architecture</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="feature-badge text-[9px]">Power BI</span>
+                                <span class="feature-badge text-[9px]">Azure ETL</span>
+                                <span class="feature-badge text-[9px]">DAX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Customer Journey -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-start" data-aos="fade-up">
+                        <div class="sticky top-24">
+                            <div class="relative rounded-[3rem] overflow-hidden group shadow-2xl mb-8">
+                                <img src="https://d.top4top.io/p_3692hxiug1.png" class="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110" alt="Customer Journey">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-10">
+                                    <span class="feature-badge">Behavioral Science</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="feature-badge text-[9px]">Funnel Analysis</span>
+                                <span class="feature-badge text-[9px]">Probability Models</span>
+                                <span class="feature-badge text-[9px]">Clickstream</span>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-5xl font-black uppercase text-sky-500 mb-4 leading-tight">Predictive Customer Journey Mapping</h3>
+                                <p class="text-slate-400 text-base leading-relaxed text-justify">
+                                    A deep-dive analysis of web clickstream data to understand why high-intent users were dropping off before conversion. This project combined technical tracking with psychological behavioral modeling.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Analytical Approach</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Employed <span class="text-sky-400">Markov Chain transition matrices</span> to calculate the probability of a user moving from "Product View" to "Checkout." I identified "Dead Ends" in the UI where the probability of exit exceeded 70%.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Optimized Outcomes</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Implemented automated remarketing triggers based on the behavioral score.
+                                    <br><br>
+                                    <span class="text-white font-bold">• Conversion Rate:</span> Increased by 18% within the first fiscal quarter.
+                                    <br><span class="text-white font-bold">• CAC Efficiency:</span> Lowered Customer Acquisition Cost by 12%.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Logistics Automation -->
+                    <div class="grid lg:grid-cols-2 gap-16 items-start" data-aos="fade-up">
+                        <div class="order-2 lg:order-1 space-y-8">
+                            <div>
+                                <h3 class="text-5xl font-black uppercase text-sky-500 mb-4 leading-tight">Supply Chain Anomaly & Risk Engine</h3>
+                                <p class="text-slate-400 text-base leading-relaxed text-justify">
+                                    Logistics data is notoriously messy. I built a proactive monitoring system that flags logistical disruptions (weather, port congestion, carrier delays) before they escalate into out-of-stock events.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Technical Implementation</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Leveraged <span class="text-sky-400">Isolation Forest algorithms</span> for unsupervised anomaly detection. The model continuously scans live transit logs to detect outliers in delivery times compared to the 6-month moving average.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="project-section-title text-sm font-black uppercase text-white">Business Value</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed text-justify">
+                                    Transformed the logistics team from "Reactive firefighting" to "Proactive planning."
+                                    <br><br>
+                                    <span class="text-white font-bold">• Cost Savings:</span> Saved $150k+ in emergency air-freight costs annually.
+                                    <br><span class="text-white font-bold">• Customer Satisfaction:</span> Improved "On-Time Delivery" rate to 98.4%.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2 sticky top-24">
+                            <div class="relative rounded-[3rem] overflow-hidden group shadow-2xl mb-8">
+                                <img src="https://e.top4top.io/p_36921znx81.png" class="w-full aspect-square object-cover transition-transform duration-1000 group-hover:scale-110" alt="Supply Chain">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end p-10">
+                                    <span class="feature-badge">Operations AI</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="feature-badge text-[9px]">Anomaly Detection</span>
+                                <span class="feature-badge text-[9px]">Python AI</span>
+                                <span class="feature-badge text-[9px]">Logistics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page-container">
+            <div class="max-w-4xl mx-auto px-6 py-24 text-center">
+                <h2 class="text-7xl md:text-9xl font-black uppercase mb-10 leading-[0.8]">Ready <br> for <span class="text-sky-500">Impact?</span></h2>
+                <p class="text-slate-400 mb-16 text-xl">Let's discuss how data can transform your business strategy.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <a href="https://wa.me/201027324111" target="_blank" class="glass p-12 rounded-[3.5rem] group hover:bg-green-500/5 transition-all">
+                        <i class="fab fa-whatsapp text-4xl text-green-500 mb-4"></i>
+                        <h4 class="text-2xl font-black uppercase">WhatsApp</h4>
+                        <p class="text-[10px] text-slate-500 mt-2 uppercase tracking-widest font-bold">Direct Communication</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/haneen-mohamed-995861367/" target="_blank" class="glass p-12 rounded-[3.5rem] group hover:bg-sky-500/5 transition-all">
+                        <i class="fab fa-linkedin text-4xl text-sky-500 mb-4"></i>
+                        <h4 class="text-2xl font-black uppercase">LinkedIn</h4>
+                        <p class="text-[10px] text-slate-500 mt-2 uppercase tracking-widest font-bold">Professional Network</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav fixed bottom-0 w-full h-24 glass border-t border-white/5 flex items-center justify-around px-6 z-[1000]">
+        <button onclick="showPage('home')" id="m-home" class="nav-btn flex flex-col items-center gap-2 active">
+            <i class="fas fa-circle-nodes text-xl"></i>
+            <span class="text-[8px] font-black uppercase">Intro</span>
+        </button>
+        <button onclick="showPage('experience')" id="m-experience" class="nav-btn flex flex-col items-center gap-2 opacity-50">
+            <i class="fas fa-layer-group text-xl"></i>
+            <span class="text-[8px] font-black uppercase">Expertise</span>
+        </button>
+        <button onclick="showPage('projects')" id="m-projects" class="nav-btn flex flex-col items-center gap-2 opacity-50">
+            <i class="fas fa-fire-alt text-xl"></i>
+            <span class="text-[8px] font-black uppercase">Work</span>
+        </button>
+        <button onclick="showPage('contact')" id="m-contact" class="nav-btn flex flex-col items-center gap-2 opacity-50">
+            <i class="fas fa-comment-dots text-xl"></i>
+            <span class="text-[8px] font-black uppercase">Contact</span>
+        </button>
+    </nav>
+
+    <script>
+        window.addEventListener('load', () => {
+            if(typeof AOS !== 'undefined') {
+                AOS.init({ duration: 1000, once: true });
+            }
+
+            const typewriterElement = document.getElementById('typewriter');
+            if(typewriterElement) {
+                new Typed('#typewriter', {
+                    strings: ['Data Strategy Design', 'Predictive Intelligence', 'Enterprise BI Systems', 'Full-Stack Analytics'],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    loop: true
+                });
+            }
+        });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+                targetPage.scrollTop = 0;
+            }
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.opacity = "0.5";
+                if(btn.id === 'm-' + pageId || btn.id === 'd-' + pageId) {
+                    btn.classList.add('active');
+                    btn.style.opacity = "1";
+                }
+            });
+            
+            if(typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+    </script>
+</body>
+</html>
